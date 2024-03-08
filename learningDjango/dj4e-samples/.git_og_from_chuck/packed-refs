@@ -1,0 +1,7 @@
+# pack-refs with: peeled fully-peeled sorted 
+dfa1dd3234c379c1bd022dda24d920c4a47cae53 refs/remotes/origin/dependabot/pip/cryptography-42.0.4
+0522e16efd6c40c5ecec549a664f24db878cb065 refs/remotes/origin/dependabot/pip/django-3.2.24
+2b5b49cffceef1979c5739fbfeb48ec788ecfd60 refs/remotes/origin/dependabot/pip/old/django-3.2.24
+da28310bc5657c5c37785cba131bdab841cd5635 refs/remotes/origin/django40
+19754b1362ff4c6ee6cd93e1c9b3087fb76e358b refs/remotes/origin/future
+fa2caa0907cdae833465147ab0e1beca693d7bd8 refs/remotes/origin/main
