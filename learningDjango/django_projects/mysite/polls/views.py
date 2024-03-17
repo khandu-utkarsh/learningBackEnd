@@ -1,7 +1,9 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader 
 from .models import Question
 from django.shortcuts import render, get_object_or_404
+from django.db.models import F
+from django.urls import reverse
 
 #Let's use Django templating engine to separate Python code from the design of the page.
 
@@ -51,7 +53,6 @@ def detail(request, question_id):
     # return HttpResponse("You're looking at question %s." % question_id)
 
 def results(request, question_id):
-
     question = get_object_or_404(Question, pk=question_id)
     return render(request, "polls/results.html", {"question": question})
 
@@ -81,7 +82,6 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
-
 
     # #This is a dummy method, 
     # return HttpResponse("You are voting on the question %s" %question_id)
