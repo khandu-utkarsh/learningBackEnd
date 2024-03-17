@@ -10,7 +10,7 @@ def funky(request):
     <a href="https://github.com/csev/dj4e-samples">
     https://github.com/csev/dj4e-samples</a></p>
     </body></html>"""
-    return HttpResponse(response)
+    return HttpResponse(response) Wha
 
 def danger(request) :
     response = """<html><body>

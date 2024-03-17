@@ -1,0 +1,12 @@
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+
+    {% comment %} Above one is simply avoiding the hardcoding of the path 
+    <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> {% endcomment %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
