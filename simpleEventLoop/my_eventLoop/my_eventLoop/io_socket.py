@@ -1,5 +1,5 @@
 import socket as _socket
-import context
+from context import Context
 import selectors
 import errno
 import IOError
