@@ -1,11 +1,17 @@
 import socket as _socket
+import context
+import selectors
+import errno
+import IOError
 
-#Defining non blocking socket class, which has been derived from socket class
+'''
+Class providing non blocking socket with all the basic functionalities.
+'''
 class socket(Context):
     def __init__(self, *args):
-        self._sock = _socket.socket(*args)
-        self._sock.setblocking(False)
-        self.evloop.register_fileobj(self._sock, self._on_event)
+        self._sock = _socket.socket(*args)  #Mostly tcp socket for networking
+        self._sock.setblocking(False)   #Making it non blocking.
+        self.evloop.register_fileobj(self._sock, self._on_event)    #Adding the socket to the event loop to monitor it using IO Multiplexing
         # 0 - initial
         # 1 - connecting
         # 2 - connected
@@ -51,12 +57,12 @@ class socket(Context):
         self._callbacks['sent'] = _on_write_ready
 
     def close(self):
-        self.evloop.unregister_fileobj(self._sock)
-        self._callbacks.clear()
+        self.evloop.unregister_fileobj(self._sock)  #Closing the socket, removing it from the event loop
+        self._callbacks.clear() #Socket has been closed, clear all the callbacks, even if they remained, since can't help
         self._state = 3
         self._sock.close()
 
-    def _on_event(self, mask):
+    def _on_event(self, mask):  #Defining what to do on following events. Fetching the appropriate callback and calling them.
         if self._state == 1:
             assert mask == selectors.EVENT_WRITE
             cb = self._callbacks.pop('conn')
