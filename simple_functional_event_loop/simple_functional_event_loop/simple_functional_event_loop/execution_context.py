@@ -1,3 +1,6 @@
+#Command execution context, all the IO Sockets, and function execution on event loop should be derived from this execution context:
+
+
 class Context:
     """
     A centralized access point for an event loop.
