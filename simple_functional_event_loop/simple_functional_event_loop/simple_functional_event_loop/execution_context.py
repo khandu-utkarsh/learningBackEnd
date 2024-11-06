@@ -1,7 +1,6 @@
-#Command execution context, all the IO Sockets, and function execution on event loop should be derived from this execution context:
+from event_loop import EventLoop  # Assuming EventLoop is the class type for the event loop
 
-
-class Context:
+class ExecutionContext:
     """
     A centralized access point for an event loop.
 
@@ -17,14 +16,28 @@ class Context:
         evloop: Returns the current event loop instance.
     """
     
-    _event_loop = None
+    _event_loop: EventLoop = None  # Class-level attribute for event loop
 
     @classmethod
-    def set_event_loop(cls, event_loop):
-        """Set the event loop instance."""
+    def set_event_loop(cls, event_loop: EventLoop) -> None:
+        """
+        Set the event loop instance.
+
+        Args:
+            event_loop (EventLoop): An instance of the EventLoop class to be set.
+
+        Returns:
+            None
+        """
         cls._event_loop = event_loop
 
     @property
-    def evloop(self):
-        """Get the current event loop instance."""
-        return self._event_loop
+    @classmethod
+    def evloop(cls) -> EventLoop:
+        """
+        Get the current event loop instance.
+
+        Returns:
+            EventLoop: The current event loop instance that was set using set_event_loop.
+        """
+        return cls._event_loop
