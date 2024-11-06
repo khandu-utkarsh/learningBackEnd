@@ -2,7 +2,7 @@ from collections import deque  #For dobule ended queue
 import heapq
 import selectors    #For IO Multiplexing
 import time
-from typing import Callable, Any, Tuple, List
+from typing import Callable, Any, Tuple, List, Optional
 
 class EventLoopDequeImpl:
     """
@@ -23,7 +23,6 @@ class EventLoopDequeImpl:
         self._timers: List[Tuple[int, int, Callable[..., None], Tuple[Any]]] = []
         self._timer_no: int = 0  # Counter for the next timer information
         self._ready: deque[Tuple[Callable[..., None], Tuple[Any, ...], Optional[int]]] = deque()
-
     
     def register_fxn_timer(self, curr_tick: int, callback: Callable[..., None], 
                            callback_args: Tuple[Any, ...]) -> None:
@@ -70,7 +69,7 @@ class EventLoopDequeImpl:
         """
         self._selector.unregister(file_obj)
 
-    def pop(self, tick: int) -> Optional[Tuple[Callable[..., None], Optional[int]]]:
+    def pop(self, tick: int) -> Optional[Tuple[Callable[..., None], Tuple[Any, ...], Optional[int]]]:
         """
         Retrieve the next callback to execute.
 
