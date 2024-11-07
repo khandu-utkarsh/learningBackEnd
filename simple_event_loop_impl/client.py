@@ -3,7 +3,7 @@ import json
 import random
 from typing import Callable, Optional, Tuple, Dict, Any
 
-class Client:
+class Client1:
     """
     A simple client for interacting with a server over a socket connection to fetch user and account data.
 
@@ -114,3 +114,14 @@ def get_user_balance(serv_addr: Tuple[str, int], user_id: int, done: Callable[[O
     # Set a random delay for the timer
     delay = random.randint(0, int(10e6))
     set_timer(delay, on_timer)
+
+def main_fxn_1(serv_addr):
+    def on_balance(err, balance=None):
+        if err:
+            print('ERROR', err)
+        else:
+            print(balance)
+
+    for i in range(10):
+        get_user_balance(serv_addr, i, on_balance)
+
