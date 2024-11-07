@@ -18,7 +18,7 @@ class EventLoop:
     def __init__(self):
         """Initialize the event loop with an empty EventLoopDequeImpl instance."""
         self._queue = EventLoopDequeImpl()
-        self._time = time.perf_counter()  # Use high-resolution counter
+        self._time = time.perf_counter() * 1_000_000 # Use high-resolution counter
 
 
     def run(self, entry_point: Callable[..., None], *args: Any):
@@ -62,12 +62,12 @@ class EventLoop:
         Set a timer that triggers a callback after a specified duration.
 
         Args:
-            duration (float): Duration in seconds before the callback is invoked.
+            duration (float): Duration in microseconds before the callback is invoked.
             callback (Callable[..., None]): The function to call when the timer expires.
             *callback_args (Any): Additional arguments to pass to the callback.
         """
-        self._time = time.perf_counter()  # Use high-resolution counter for time
-        tick_time = int((self._time + duration) * 1_000_000)  # Convert to microseconds
+        self._time = time.perf_counter() * 1_000_000 # Convert it into microseconds
+        tick_time = int((self._time + duration))
         self._queue.register_fxn_timer(tick_time, callback, callback_args)
 
 
@@ -79,9 +79,9 @@ class EventLoop:
             callback (callable): The function to execute.
             *args: Arguments to pass to the callback.
         """
-        self._time = time.perf_counter()  # Use high-resolution counter for time
+        self._time = time.perf_counter() * 1_000_000 # Use high-resolution counter for time
         try:
             callback(*args)  # Execute the callback with the provided arguments
         except Exception as err:
             print('Uncaught exception:', err)
-        self._time = time.perf_counter()  # Use high-resolution counter for time
+        self._time = time.perf_counter() * 1_000_000 # Use high-resolution counter for time

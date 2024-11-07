@@ -111,7 +111,7 @@ def get_user_balance(serv_addr: Tuple[str, int], user_id: int, done: Callable[[O
 
         client.get_user(user_id, on_user)
 
-    # Set a random delay for the timer
+    #Get random time in microseconds.
     delay = random.randint(0, int(10e6))
     set_timer(delay, on_timer)
 

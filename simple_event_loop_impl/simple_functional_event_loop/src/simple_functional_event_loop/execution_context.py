@@ -32,7 +32,7 @@ class ExecutionContext:
         cls._event_loop = event_loop
 
     @property
-    @classmethod
+    #@classmethod
     def evloop(cls) -> EventLoop:
         """
         Get the current event loop instance.

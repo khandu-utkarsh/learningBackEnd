@@ -30,7 +30,7 @@ class EventLoopDequeImpl:
         Register a timer with the event loop.
 
         Args:
-            curr_tick (int): The current tick time for the timer.
+            curr_tick (int): timeout in microseconds.
             callback (Callable[..., None]): The function to be called when the timer expires.
             callback_args (Tuple[Any, ...]): The arguments to pass to the callback function.
 

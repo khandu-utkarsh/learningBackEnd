@@ -1,6 +1,6 @@
 from .execution_context import ExecutionContext  # Assuming ExecutionContext is the correct import
 from .event_loop import EventLoop
-from typing import Callable
+from typing import Callable, Any
 
 class SetTimeout(ExecutionContext):
     """
@@ -14,7 +14,7 @@ class SetTimeout(ExecutionContext):
         callback_args (tuple): The arguments to pass to the callback function.
     """
 
-    def __init__(self, duration: int, callback: Callable[..., None], callback_args: tuple):
+    def __init__(self, duration: int, callback: Callable[..., None], *callback_args: Any):
         """
         Initializes a SetTimeout instance and sets a timer in the event loop.
 
