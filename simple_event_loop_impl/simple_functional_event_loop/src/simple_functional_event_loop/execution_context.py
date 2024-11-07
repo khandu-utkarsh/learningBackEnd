@@ -1,4 +1,4 @@
-from event_loop import EventLoop  # Assuming EventLoop is the class type for the event loop
+from .event_loop import EventLoop  # Assuming EventLoop is the class type for the event loop
 
 class ExecutionContext:
     """

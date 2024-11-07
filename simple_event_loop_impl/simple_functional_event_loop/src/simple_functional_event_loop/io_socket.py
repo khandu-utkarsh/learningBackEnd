@@ -1,8 +1,8 @@
 import socket as _socket    #Python's scoket clas
-from execution_context import ExecutionContext
+from .execution_context import ExecutionContext
 import selectors
 import errno
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 '''
 Class providing non blocking socket with all the basic functionalities.

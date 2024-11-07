@@ -3,7 +3,7 @@ import json
 import random
 from typing import Callable, Optional, Tuple, Dict, Any
 
-class Client1:
+class Client:
     """
     A simple client for interacting with a server over a socket connection to fetch user and account data.
 

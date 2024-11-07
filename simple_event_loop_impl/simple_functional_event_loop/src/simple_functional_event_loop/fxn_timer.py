@@ -1,5 +1,5 @@
-from execution_context import ExecutionContext  # Assuming ExecutionContext is the correct import
-from event_loop import EventLoop
+from .execution_context import ExecutionContext  # Assuming ExecutionContext is the correct import
+from .event_loop import EventLoop
 from typing import Callable
 
 class SetTimeout(ExecutionContext):

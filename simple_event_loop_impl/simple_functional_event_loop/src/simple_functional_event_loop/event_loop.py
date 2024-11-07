@@ -1,4 +1,4 @@
-from event_loop_impl_deque import EventLoopDequeImpl
+from .event_loop_impl_deque import EventLoopDequeImpl
 import time  # Import time to handle time-related operations
 from typing import Callable, Any
 
