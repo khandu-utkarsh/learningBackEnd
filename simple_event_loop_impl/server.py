@@ -5,7 +5,6 @@ from socketserver import BaseRequestHandler, TCPServer
 from uuid import uuid4
 from typing import Dict, Any, Tuple
 
-
 class Handler(BaseRequestHandler):
     """
     A request handler for managing user and account data over TCP.
@@ -28,7 +27,7 @@ class Handler(BaseRequestHandler):
         client = f'client {self.client_address}'
         try:
             # Receive the request from the client
-            request_data = self.request.recv(1024)
+            request_data = self.request.recv(1024)  #Receiving data on the socket sent by the client
             if not request_data:
                 print(f'{client} unexpectedly disconnected')
                 return
