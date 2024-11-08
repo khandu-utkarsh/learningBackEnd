@@ -106,8 +106,8 @@ def get_user_balance(serv_addr: Tuple[str, int], user_id: int, done: Callable[[O
                 done(None, f'User {user["name"]} has {acc["balance"]} USD')
 
             try:
-                if user_id % 5 == 0:
-                    raise Exception('Do not throw from callbacks')
+                # if user_id % 5 == 0:
+                #     raise Exception('Do not throw from callbacks')
                 if user:
                     client.get_balance(user['account_id'], on_account)
             except Exception as e:
