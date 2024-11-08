@@ -1,6 +1,3 @@
-##To execute it from the script
-import sys
-import os
 from simple_functional_event_loop import Socket as socket, SetTimeout as set_timer
 import socket as _socket    #Python's scoket clas
 import json
@@ -103,7 +100,7 @@ def get_user_balance(serv_addr: Tuple[str, int], user_id: int, done: Callable[[O
             def on_account(err: Optional[Exception], acc: Optional[Dict[str, Any]] = None) -> None:
                 if err:
                     return done(err)
-                done(None, f'User {user["name"]} has {acc["balance"]} USD')
+                done(None, f'User with id {user["id"]} and name {user["name"]} has {acc["balance"]} USD')
 
             try:
                 # if user_id % 5 == 0:
@@ -128,4 +125,3 @@ def main_fxn_1(serv_addr):
 
     for i in range(10):
         get_user_balance(serv_addr, i, on_balance)
-
