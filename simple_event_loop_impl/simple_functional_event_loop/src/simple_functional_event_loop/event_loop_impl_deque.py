@@ -93,6 +93,7 @@ class EventLoopDequeImpl:
         events = self._selector.select(timeout)  # Wait for events until the timeout
         for key, mask in events:
             callback, callback_args = key.data
+            #print("event added from the selector with mask: ", mask)
             self._ready.append((callback, callback_args, mask))  # Add all callbacks ready to be executed.
 
         if not self._ready and self._timers:  # If no events occurred in the given time
@@ -103,6 +104,7 @@ class EventLoopDequeImpl:
 
         while self._timers and self._timers[0][0] <= tick:  # Check for expired timers
             _, _, callback, callback_args = heapq.heappop(self._timers)
+            #print("event added from timer")
             self._ready.append((callback, callback_args, None))  # Add timer callbacks to ready list
 
         return self._ready.popleft()  # Return the next function to execute.
