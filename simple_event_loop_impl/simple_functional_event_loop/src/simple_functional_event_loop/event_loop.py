@@ -33,8 +33,12 @@ class EventLoop:
 
         while not self._queue.is_empty():
             fn, args_fxn, mask = self._queue.pop(self._time)  # Adjusted to unpack `pop` result correctly
-            self._execute(fn, *args_fxn)
-
+            if(mask == None) :
+                combined_args = args_fxn                           
+            else:
+             # Combine args_fxn and mask into a single tuple for _execute
+                combined_args = (*args_fxn, mask)
+            self._execute(fn, *combined_args)  # Unpack combined_args when calling _execute
         self._queue.close()
 
     def register_fileobj(self, fileobj: Any, callback: Callable[..., None], *args: Any):

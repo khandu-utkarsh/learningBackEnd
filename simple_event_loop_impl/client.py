@@ -1,4 +1,8 @@
+##To execute it from the script
+import sys
+import os
 from simple_functional_event_loop import Socket as socket, SetTimeout as set_timer
+import socket as _socket    #Python's scoket clas
 import json
 import random
 from typing import Callable, Optional, Tuple, Dict, Any
@@ -51,7 +55,7 @@ class Client:
             callback (function): A callback function to handle the response. 
                                  It accepts two arguments: an error and parsed data (if successful).
         """
-        sock = socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock = socket(_socket.AF_INET, _socket.SOCK_STREAM)
 
         def _on_conn(err: Optional[Exception]) -> None:
             if err:
