@@ -1,1 +1,12 @@
-learningDjango/django_projects/mysite/toLearnDeeper.txt
+
+#asset folder, keeping it local
+**/asset-download/
+
+
+.DS_Store
+**/node_modules/
+**/.angular/
+**/.next/
+
+next-blog/.env
+next-blog/.next
